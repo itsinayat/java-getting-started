@@ -1,3 +1,22 @@
+package com.inayat.yourrooms;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /*
  * Copyright 2002-2014 the original author or authors.
  *
@@ -14,29 +33,13 @@
  * limitations under the License.
  */
 
-package com.example;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Map;
 
 @Controller
 @SpringBootApplication
-public class Main {
+class YourroomsApplication{
 
   @Value("${spring.datasource.url}")
   private String dbUrl;
@@ -45,7 +48,7 @@ public class Main {
   private DataSource dataSource;
 
   public static void main(String[] args) throws Exception {
-    SpringApplication.run(Main.class, args);
+    SpringApplication.run(YourroomsApplication.class, args);
   }
 
   @RequestMapping("/")
@@ -85,4 +88,9 @@ public class Main {
     }
   }
 
+  
+  @Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

@@ -88,9 +88,4 @@ class YourroomsApplication{
     }
   }
 
-  
-  @Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 }
